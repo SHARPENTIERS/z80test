@@ -4,14 +4,16 @@
 ;
 ; This source code is released under the MIT license, see included license.txt.
 
+; Modified for SHARP MZ-80K series.
 
-; call アドレスの次の内容を print
+
+; call アドレスの次の内容を print / Print the following contents of the call address
 print:      ex      (sp),hl
             call    printhl
             ex      (sp),hl
             ret
 
-; HL の示すアドレスの内容を print
+; HL の示すアドレスの内容を print / Print the contents of the address indicated by HL
 printhl:
 .loop       ld      a,(hl)
             inc     hl
@@ -20,7 +22,7 @@ printhl:
             call    printchr
             jr      .loop
 
-; a の内容を 10 進表示
+; A の内容を 10 進表示 / Decimal representation of the contents of A
 printdeca:  ld      h,a
             ld      b,-100
             call    .digit
@@ -41,7 +43,7 @@ printdeca:  ld      h,a
 
 printcrc:   ld      b,4
 
-; HL の挿す内容を 16進表示
+; HL の挿す内容を 16進表示 / Hexadecimal display of HL insertion contents
 printhexs:
 .loop       ld      a,(hl)
             inc     hl
@@ -63,7 +65,7 @@ printhexa:  push    af
             add     a,0xa0
             adc     a,0x40
 
-; 1 文字表示
+; 1 文字表示 / Print one character
 ; in: a = ascii code
 printchr:   push    iy
             push    bc
