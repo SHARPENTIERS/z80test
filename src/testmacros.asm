@@ -7,7 +7,7 @@
             macro   db8 b7,b6,b5,b4,b3,b2,b1,b0
             db      (b7<<7)|(b6<<6)|(b5<<5)|(b4<<4)|(b3<<3)|(b2<<2)|(b1<<1)|b0
             endm
-            
+
             macro   ddbe n
             db      (n>>24)&0xff
             db      (n>>16)&0xff
@@ -95,7 +95,7 @@
             endif
             endif
             endm
-            
+
             macro   name n
             dz      n
             endm

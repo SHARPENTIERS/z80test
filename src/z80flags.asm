@@ -5,7 +5,7 @@
 ; This source code is released under the MIT license, see included license.txt.
 
             macro       testname
-            db          "flags"
+            db          "FLAGS"
             endm
 
 maskflags   equ         0

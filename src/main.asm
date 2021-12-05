@@ -11,13 +11,15 @@ main:       di
             exx
             push    hl
 
-            call    printinit
+            call    print
+            db      0x0d, 0
 
             call    print
             db      "Z80 "
             testname
-            db      " test"
-            db      23,32-13,1,127," 2012 RAXOFT",13,13,0
+            db      " TEST FOR MZ-80/700/1500", 0x0d
+            db      "(C) 2012 RAXOFT", 0x0d
+            db      "PORTED BY SNAIL 2021", 0x0d, 0x0d, 0
 
             ld      bc,0
             ld      hl,testtable
@@ -44,7 +46,7 @@ main:       di
             jr      nz,.loop
 
             call    print
-            db      13,"Result: ",0
+            db      13,"RESULT: ",0
 
             ld      a,b
             or      a
@@ -53,17 +55,17 @@ main:       di
             call    printdeca
 
             call    print
-            db      " of ",0
+            db      " OF ",0
 
             ld      a,c
             call    printdeca
 
             call    print
-            db      " tests failed.",13,0
+            db      " TESTS FAILED.",13,0
             jr      .done
 
 .ok         call    print
-            db      "all tests passed.",13,0
+            db      "ALL TESTS PASSED.",13,0
 
 .done       pop     hl
             exx
@@ -119,7 +121,7 @@ main:       di
             call    printcrc
 
             call    print
-            db      "   Expected:",0
+            db      "   EXPECTED:",0
 
             ex      de,hl
             call    printcrc

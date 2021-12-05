@@ -5,15 +5,13 @@
 ; This source code is released under the MIT license, see included license.txt.
 
 
-printinit:  ld      a,2
-            jp      0x1601      ; CHAN-OPEN
-
-
+; call アドレスの次の内容を print
 print:      ex      (sp),hl
             call    printhl
             ex      (sp),hl
             ret
 
+; HL の示すアドレスの内容を print
 printhl:
 .loop       ld      a,(hl)
             inc     hl
@@ -22,7 +20,7 @@ printhl:
             call    printchr
             jr      .loop
 
-
+; a の内容を 10 進表示
 printdeca:  ld      h,a
             ld      b,-100
             call    .digit
@@ -43,6 +41,7 @@ printdeca:  ld      h,a
 
 printcrc:   ld      b,4
 
+; HL の挿す内容を 16進表示
 printhexs:
 .loop       ld      a,(hl)
             inc     hl
@@ -64,18 +63,16 @@ printhexa:  push    af
             add     a,0xa0
             adc     a,0x40
 
+; 1 文字表示
+; in: a = ascii code
 printchr:   push    iy
-            ld      iy,0x5c3a   ; ERR-NR
-            push    de
             push    bc
-            exx
-            ei
-            ; out     (0xff),a
-            rst     0x10
-            di
-            exx
-            pop     bc
+            push    de
+            push    hl
+            call    0x0012  ; print 1char
+            pop     hl
             pop     de
+            pop     bc
             pop     iy
             ret
 
