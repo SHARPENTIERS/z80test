@@ -28,8 +28,8 @@ declare(strict_types = 1);
 // 引数チェック / Argument check
 if (count($argv) !== 6)
 {
-    fwrite(STDERR, 'Usage: php '.$argv[0]." <binary file> <program name>, <load address> <exec address> outfile.mzt\n");
-    fwrite(STDERR, "  Program name can use uppercase and space, up to 16 characters.\n");
+    fwrite(STDERR, 'Usage: php '.$argv[0]." <binary file> <program name> <load address> <exec address> outfile.mzt\n");
+    fwrite(STDERR, "  Program name converted in upper case, up to 16 characters.\n");
     fwrite(STDERR, "  Both addresses can be decimal or hexadecimal(0x).\n");
     exit(1);
 }
@@ -81,7 +81,7 @@ $data .= pack("v", $loadAddr);  // ロード アドレス / Load address
 $data .= pack("v", $execAddr);  // 実行開始アドレス / Execution start address
 for ($i = 0; $i < 0x68; $i++)
 {
-    $data .= pack("C", 0x00);  // 🇯🇵 ファイル名
+    $data .= pack("C", 0x00);  // ファイルコメント / File comment
 }
 $data .=  $binData;
 
