@@ -17,9 +17,10 @@ main:       di
             call    print
             db      "Z80 "
             testname
-            db      " TEST FOR MZ-80/700/1500", 0x0d
-            db      "(C) 2012 RAXOFT", 0x0d
-            db      "PORTED BY SNAIL 2021", 0x0d, 0x0d, 0
+            db      " TEST", 13
+            db      "(C) 2012 RAXOFT", 13
+            db      "FOR MZ-80K/700/1500 BY SNAIL 2021 V1.0A", 13, 13
+            db      "** NOTE **", 0x0d, "I/O TEST CRCS ARE NOT TAKEN FROM ACTUAL MACHINE.", 13, 13, 0
 
             ld      bc,0
             ld      hl,testtable
@@ -110,12 +111,12 @@ main:       di
             jr      nz,.mismatch
 
             call    print
-            db      23,32-2,1,"OK",13,0
+            db      " OK",13,0
 
             ret
 
 .mismatch   call    print
-            db      23,32-6,1,"FAILED",13
+            db      " FAILED",13
             db      "CRC:",0
 
             call    printcrc

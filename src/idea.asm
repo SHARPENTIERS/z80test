@@ -11,7 +11,7 @@ vecsize     equ     opsize+datasize ; Size of entire test vector.
 test:       ld      (.spptr+1),sp
 
             if      maskflags       ; Keep mask for official flags.
-            ld      a,(hl)          
+            ld      a,(hl)
             ld      (.flagptr+1),a
             endif
 
@@ -26,7 +26,7 @@ test:       ld      (.spptr+1),sp
             call    .copy
 
             call    .copy
-            
+
             add     hl,bc
 
             ld      (.valptr+1),de
@@ -42,7 +42,7 @@ test:       ld      (.spptr+1),sp
             inc     de
 
             call    .copy
-            
+
             ld      a,0x07          ; Make sure we get 0
             out     (0xfe),a        ; on MIC bit when doing IN.
 
@@ -64,7 +64,7 @@ test:       ld      (.spptr+1),sp
 .loop       ld      hl,counter
             ld      de,shifter+1
             ld      bc,vector
-            
+
             macro   combine base,count,offset:0,last:1
             repeat  count
             ld      a,(bc)
@@ -134,7 +134,7 @@ test:       ld      (.spptr+1),sp
             push    de
             push    bc
             push    af
-            
+
             ld      hl,data
 
             if      maskflags
@@ -162,7 +162,7 @@ test:       ld      (.spptr+1),sp
 
             ld      l,a
             ld      h,crctable/256
-            
+
             ld      a,(hl)
             xor     d
             ld      e,a
@@ -233,7 +233,7 @@ test:       ld      (.spptr+1),sp
             jp      .loop
 
 .exit       exx
-.spptr      ld      sp,0
+.spptr      ld      sp,0x8000
             ret
 
             ; Misc helper routines.
