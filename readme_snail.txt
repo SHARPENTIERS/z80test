@@ -1,3 +1,5 @@
+**** z80test for MZ-80K/1200/700/1500 ****
+
 2021.12.21 V1.0a
 - .MZF file included.
 - Fixed some display.
