@@ -19,8 +19,7 @@ main:       di
             testname
             db      " TEST", 13
             db      "(C) 2012 RAXOFT", 13
-            db      "FOR MZ-80K/700/1500 BY SNAIL 2021 V1.0A", 13, 13
-            db      "** NOTE **", 0x0d, "I/O TEST CRCS ARE NOT TAKEN FROM ACTUAL MACHINE.", 13, 13, 0
+            db      "FOR MZ-80K/700/1500 BY SNAIL 2021 V1.0B", 13, 13, 0
 
             ld      bc,0
             ld      hl,testtable

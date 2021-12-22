@@ -1,28 +1,23 @@
-Welcome to the Zilog Z80 CPU test suite.
+**** z80test for MZ-80K/1200/700/1500 ****
 
-This set of programs is intended to help the emulator authors to reach the
-desired level of the CPU emulation authenticity. Each of the included programs
-performs an exhaustive computation using each of the tested Z80 instructions,
-compares the results with values obtained from a real 48K Spectrum with Zilog Z80 CPU,
-and reports any deviations detected.
+Original Copyright (c) 2012 Patrik Rak
+Ported by Snail 2021
+Please read OriginalDocs/readme.txt
 
-The following variants are available:
+2021.12.22 V1.0b
+- Full, Memptr and Ccf test's CRCs were taken from MZ-1500 by motochan1500. Thank you!
 
-- z80full - tests all flags and registers.
-- z80doc - tests all registers, but only officially documented flags.
-- z80flags - tests all flags, ignores registers.
-- z80docflags - tests documented flags only, ignores registers.
-- z80ccf - tests all flags after executing CCF after each instruction tested.
-- z80memptr - tests all flags after executing BIT N,(HL) after each instruction tested.
+2021.12.21 V1.0a
+- .MZF file included.
+- Fixed some display.
+- Now I/O tests(#096-#102) use printer data port (0xff). But their CRCs are not taken from actual machine.
+  I would be grateful if you could check and tell me the actual CRC of each test.
 
-The first four are the standard tests for CPU emulation. The CCF variant is
-used to thoroughly test the authentic SCF/CCF behavior after each Z80
-instruction. Finally the MEMPTR variant can be used to discover problems in
-the MEMPTR emulation - however note that the current set of test was not
-specifically designed to stress test MEMPTR, so many of the possible
-problems are very likely left undetected. I may eventually add specific
-MEMPTR tests in later releases.
+2021.12.05 V1.0
+- Changed makefile, print.asm, Uppercase strings.
+- 'ALO' probably means 'Arithmetic and Logical operations' (ADD, ADC, SUB, SBC, AND, XOR, OR, CP)
+- 'SRO' probably means 'Shift and Rotate operations' (RLC, RL, SLA, SLL, RRC, RR, SRA, SRL)
+- Fortunately, the address of the executable binary (0x8000 # 0x4000) also went into the main RAM of the MZ-80K.
+- I/O tests use printer control port (0xfe). please turn off the printer.
 
-Enjoy!
-
-Patrik Rak
+Snail
